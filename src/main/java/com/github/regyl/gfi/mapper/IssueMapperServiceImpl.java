@@ -20,6 +20,7 @@ public class IssueMapperServiceImpl implements BiFunction<Map<String, Repository
                 .title(dto.getTitle())
                 .url(dto.getUrl())
                 .updatedAt(dto.getUpdatedAt())
+                .createdAt(dto.getCreatedAt())
                 .repository(repos.get(dto.getRepository().getId()))
                 .build();
     }

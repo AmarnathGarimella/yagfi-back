@@ -19,6 +19,7 @@ public class GithubIssueDto {
     private String url;
     private GithubIssueState state;
     private OffsetDateTime updatedAt;
+    private OffsetDateTime createdAt;
     private GithubRepositoryDto repository;
     private GithubLabelsDto labels;
 }

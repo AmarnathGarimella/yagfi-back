@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.graphql.client.ClientGraphQlResponse;
 import org.springframework.graphql.client.GraphQlClient;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -42,6 +43,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
                                     url
                                     state
                                     updatedAt
+                                    createdAt
                                     repository {
                                         id
                                         nameWithOwner
@@ -68,21 +70,25 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
     private final GraphQlClient githubClient;
     private final LabelService labelService;
     private final DataService dataService;
+    private final ThreadPoolTaskExecutor taskExecutor;
 
     @Override
     public void upload() {
         Collection<LabelModel> labels = labelService.findAll();
         for (LabelModel label : labels) {
-            String query = String.format("is:issue is:open no:assignee label:\"%s\"", label.getTitle());
-            IssueData response = getIssues(new IssueRequestDto(query, null));
-            dataService.save(response);
 
-            String cursor = response.getEndCursor();
-            while (StringUtils.isNotBlank(cursor)) {
-                response = getIssues(new IssueRequestDto(query, cursor));
+            String query = String.format("is:issue is:open no:assignee label:\"%s\"", label.getTitle());
+            taskExecutor.submit(() -> {
+                IssueData response = getIssues(new IssueRequestDto(query, null));
                 dataService.save(response);
-                cursor = response.getEndCursor();
-            }
+
+                String cursor = response.getEndCursor();
+                while (StringUtils.isNotBlank(cursor)) { //FIXME supply as new task to taskExecutor
+                    response = getIssues(new IssueRequestDto(query, cursor));
+                    dataService.save(response);
+                    cursor = response.getEndCursor();
+                }
+            });
         }
     }
 

@@ -45,14 +45,15 @@ public class DataServiceImpl implements DataService {
                 .map(repoMapper)
                 .collect(Collectors.toSet());
         Set<String> existingRepos = repoRepository.findAllSourceIds();
+        //to avoid unique constraint exception
         repos.removeIf(item -> existingRepos.contains(item.getSourceId()));
-        repoRepository.saveAll(repos);
+        repoRepository.saveAll(repos); //FIXME insert on conflict do nothing and remove previous line
         Map<String, RepositoryEntity> repoCollection = repoRepository.findAll().stream()
                 .collect(Collectors.toMap(RepositoryEntity::getSourceId, repo -> repo));
 
         List<IssueEntity> issues = search.getNodes().stream()
                 .map(issue -> issueMapper.apply(repoCollection, issue))
-                .toList();
+                .toList(); //FIXME insert on conflict do nothing
 
         log.info("Issues found: {}", issues.size());
         issueRepository.saveAll(issues);

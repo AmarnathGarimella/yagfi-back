@@ -18,3 +18,9 @@ To compare with, look for other similar projects:
 - https://www.goodfirstissue.org/
 - https://forgoodfirstissue.github.com/
 - https://up-for-grabs.net/
+
+## Need fix
+- supply each new query as task to task executor
+- add insert on conflict do nothing
+- add view and supply result to front from it. While one table is filling, other supply one hour older results
+- remove all issues with label stale (idk how since github query does not support multiple label filters)
