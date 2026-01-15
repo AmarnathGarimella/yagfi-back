@@ -1,8 +1,5 @@
-# Data size
-- help-wanted: 8k
-- good-first-issue: 6.6k
-- beginner-friendly: 2.8k
-- first-timers-only: 2.7k
-
 GraphQL due to:
-- simple cursor pagination
+- Simple cursor pagination
+- Allows to fetch multiple entities at once
+- Allows to configure what data you will get. Means less network traffic, less data to serialize
+- Higher rate limits

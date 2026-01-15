@@ -1,6 +1,7 @@
 package com.github.regyl.gfi.service.impl;
 
 import com.github.regyl.gfi.model.IssueTables;
+import com.github.regyl.gfi.service.ScheduledService;
 import com.github.regyl.gfi.service.source.IssueSourceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ import java.util.concurrent.locks.LockSupport;
 @Component
 @RequiredArgsConstructor
 @ConditionalOnProperty(value = "spring.properties.auto-upload.enabled", havingValue = "true")
-public class IssueLoaderServiceImpl {
+public class IssueLoaderServiceImpl implements ScheduledService {
 
     @Qualifier("issueLoadAsyncExecutor")
     private final ThreadPoolTaskExecutor taskExecutor;
@@ -28,7 +29,7 @@ public class IssueLoaderServiceImpl {
     private final JdbcTemplate jdbcTemplate;
 
     @Scheduled(fixedRateString = "${spring.properties.auto-upload.period-mills}", initialDelay = 1000)
-    public void upload() {
+    public void schedule() {
         IssueTables table = determineTable();
         sourceServices.forEach(service -> service.upload(table));
 
