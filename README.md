@@ -12,6 +12,9 @@ YAGFI - yet another good first issue
 <div align="center">
   <a href="https://www.bestpractices.dev/en/projects/11787"><img src="https://www.bestpractices.dev/projects/10534/badge" alt="OpenSSF Best Practices"></a>
 </div>
+<div align="center">
+  <a href="https://discord.gg/evCSycGd"><img src="https://img.shields.io/discord/1465432673164984567" alt="Discord"></a>
+</div>
 
 ## Why yet another good-first-issue project?
 First of all, when I searched for projects to contribute, I met one thing. 
@@ -37,11 +40,6 @@ To compare with, look for other similar projects:
 - Data updates every 12 minutes since GitHub rate limit allows no more
 - The list of current supported issues is [here](https://github.com/Regyl/yagfi-back/blob/master/src/main/resources/data/labels.txt)
   - See [CONTRIBUTING](https://github.com/Regyl/yagfi-back/tree/master/docs/CONTRUBUTING.md) if you found some unsupported labels
-
-## Need fix
-- Supply each new query as task to task executor to reuse threads
-- Remove all issues with label *stale* by filtering the response since it contains labels
-- Add support for GitLab issues
 
 ## Frontend
 Frontend for this project is placed [here](https://github.com/Regyl/yagfi-front). Yes, it's vibe-coded. 

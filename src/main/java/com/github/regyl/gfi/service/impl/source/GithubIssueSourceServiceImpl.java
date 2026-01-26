@@ -26,7 +26,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class GithubIssueSourceServiceImpl implements IssueSourceService {
 
-    private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-reuqest.graphql");
+    private static final String QUERY = ResourceUtil.getFilePayload("graphql/github-request.graphql");
 
     private final GraphQlClient githubClient;
     private final LabelService labelService;
@@ -49,7 +49,7 @@ public class GithubIssueSourceServiceImpl implements IssueSourceService {
                 dataService.save(response, table);
 
                 String cursor = response.getEndCursor();
-                while (StringUtils.isNotBlank(cursor)) { //FIXME supply as new task to taskExecutor
+                while (StringUtils.isNotBlank(cursor)) {
                     response = getIssues(new IssueRequestDto(query, cursor));
                     dataService.save(response, table);
                     cursor = response.getEndCursor();
