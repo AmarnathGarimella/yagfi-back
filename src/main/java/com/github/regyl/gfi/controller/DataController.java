@@ -6,11 +6,11 @@ import com.github.regyl.gfi.service.DataService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.Collection;
 
 @RestController
@@ -20,8 +20,8 @@ public class DataController {
 
     private final DataService dataService;
 
-    @GetMapping("/random")
-    public String findRandom( @ModelAttribute DataRequestDto filters) {
+    @PostMapping("/random")
+    public String findRandom(@RequestBody @Valid DataRequestDto filters) {
         return dataService.findRandomIssueUrl(filters);
     }
 

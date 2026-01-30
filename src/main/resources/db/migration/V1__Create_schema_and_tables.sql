@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS gfi.e_log
     url            TEXT                     NOT NULL,
     http_method    VARCHAR(10)              NOT NULL,
     request_body   JSONB,
-    country        VARCHAR(2),
+    country        VARCHAR(20),
     os             VARCHAR(50),
     browser_family VARCHAR(50),
     device_type    VARCHAR(20)

@@ -49,10 +49,10 @@
         order by cnt desc
     </select>
 
-    <select id="findRandomIssueLink" resultType="java.lang.String">
-        SELECT i.url
-        FROM gfi.issue_v i
-        JOIN gfi.repository_v r ON i.repository_id = r.id
+    <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
+        SELECT ei.url
+        FROM gfi.issue_v ei
+        INNER JOIN gfi.repository_v er ON ei.repository_id = er.id
         <include refid="dataFilter"/>
         ORDER BY RANDOM() LIMIT 1
     </select>
