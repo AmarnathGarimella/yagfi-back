@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS e_issue_1
     created_at    TIMESTAMP WITH TIME ZONE NOT NULL,
     repository_id BIGINT                   NOT NULL,
     labels        VARCHAR[],
+    language      VARCHAR(255),
     CONSTRAINT fk_issue_repository FOREIGN KEY (repository_id)
         REFERENCES e_repository_1 (id)
         ON DELETE CASCADE
@@ -54,6 +55,7 @@ CREATE TABLE IF NOT EXISTS e_issue_2
     created_at    TIMESTAMP WITH TIME ZONE NOT NULL,
     repository_id BIGINT                   NOT NULL,
     labels        VARCHAR[],
+    language      VARCHAR(255),
     CONSTRAINT fk_issue_repository FOREIGN KEY (repository_id)
         REFERENCES e_repository_2 (id)
         ON DELETE CASCADE

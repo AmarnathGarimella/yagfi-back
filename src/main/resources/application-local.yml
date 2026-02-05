@@ -2,7 +2,7 @@ spring:
   properties:
     host-name: localhost
     auto-upload:
-      enabled: true
+      enabled: false
     feed-generation:
       enabled: false
     email:

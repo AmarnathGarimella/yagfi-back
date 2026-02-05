@@ -5,7 +5,7 @@ import com.github.regyl.gfi.controller.dto.request.UserFeedRequestDto;
 import com.github.regyl.gfi.controller.dto.response.DataResponseDto;
 import com.github.regyl.gfi.controller.dto.response.LabelStatisticResponseDto;
 import com.github.regyl.gfi.entity.UserFeedRequestEntity;
-
+import com.github.regyl.gfi.service.feed.UserFeedService;
 import com.github.regyl.gfi.service.other.DataService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;

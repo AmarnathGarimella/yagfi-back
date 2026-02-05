@@ -18,6 +18,7 @@ public class IssueResponseDto {
     private OffsetDateTime issueUpdated;
     private OffsetDateTime issueCreated;
     private List<String> issueLabels;
+    private String issueLanguage;
 
     private String repositoryTitle;
     private String repositoryUrl;
