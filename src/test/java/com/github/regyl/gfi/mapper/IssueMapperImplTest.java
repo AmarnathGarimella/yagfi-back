@@ -8,6 +8,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
@@ -17,6 +20,7 @@ import java.time.ZoneOffset;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 @DefaultUnitTest
 class IssueMapperImplTest {
@@ -30,15 +34,23 @@ class IssueMapperImplTest {
         target = new IssueMapperImpl(dateTimeSupplier);
     }
 
-    @Test
-    void testLanguageDetection() {
+    @ParameterizedTest
+    @MethodSource("languages")
+    void testLanguageDetection(String title, String language) {
         Map<String, RepositoryEntity> repos = new HashMap<>();
         GithubIssueDto dto = new GithubIssueDto();
-        dto.setTitle("Some text");
+        dto.setTitle(title);
 
         IssueEntity result = target.apply(repos, dto);
 
         Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getLanguage()).isEqualTo("ENGLISH");
+        Assertions.assertThat(result.getLanguage()).isEqualTo(language);
+    }
+
+    static Stream<Arguments> languages() {
+        return Stream.of(
+                Arguments.of("Some text", "ENGLISH"),
+                Arguments.of("Claude: [CODE] MCPConnection 连接超时硬编码为 30000ms 应该可配置", "CHINESE")
+        );
     }
 }
