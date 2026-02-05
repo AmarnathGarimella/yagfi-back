@@ -13,7 +13,8 @@ public class GoPurlToHomepageServiceImpl implements PurlToHomepageService {
 
     @Override
     public boolean test(PackageURL purl) {
-        return "golang".equals(purl.getType()) && purl.getNamespace() != null && purl.getNamespace().startsWith("github.com");
+        return "golang".equals(purl.getType()) && purl.getNamespace() != null
+                && purl.getNamespace().startsWith("github.com");
     }
 
     @Override
