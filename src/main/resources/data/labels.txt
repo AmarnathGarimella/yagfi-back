@@ -9,6 +9,8 @@ contribution welcome
 difficulty::easy
 difficulty:easy
 doc
+documentation
+component=docs
 E-easy
 E-less-complex
 easy
