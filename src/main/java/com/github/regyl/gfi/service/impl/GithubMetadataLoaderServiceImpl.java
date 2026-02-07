@@ -1,4 +1,4 @@
-package com.github.regyl.gfi.service.impl.issueload;
+package com.github.regyl.gfi.service.impl;
 
 import com.github.regyl.gfi.entity.GitHubMetadataEntity;
 import com.github.regyl.gfi.model.LabelModel;
