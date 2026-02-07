@@ -52,15 +52,11 @@ public class GithubIssueRunnableImpl implements Runnable {
 
                 if (response.hasNextPage()) {
                     IssueRequestDto nextTask = new IssueRequestDto(task.getQuery(), response.getEndCursor());
-                    if (!queue.offer(nextTask)) {
-                        throw new RuntimeException("queue is full");
-                    }
+                    queue.offer(nextTask);
                 }
             } catch (RateLimitExceedException e) {
                 log.error("Exceeded a secondary rate limit, return task to queue");
-                if (!queue.offer(task)) {
-                    throw new RuntimeException("queue is full");
-                }
+                queue.offer(task);
                 LockSupport.parkNanos(Duration.ofSeconds(60).toNanos());
             } catch (Exception e) {
                 log.error("Error processing task for query: {}", task.getQuery(), e);

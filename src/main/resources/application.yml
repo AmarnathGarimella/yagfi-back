@@ -14,7 +14,7 @@ spring:
       auto-upload: ${AUTO_UPLOAD_ENABLED:true}
       auto-upload-meta: ${AUTO_UPLOAD_META_ENABLED:false}
       feed-generation: ${FEED_GENERATION_ENABLED:false}
-      request-logging: ${REQUEST_LOGGING_ENABLED:false}
+      request-logging: ${REQUEST_LOGGING_ENABLED:true}
     auto-upload:
       period-mills: 3600000 # 1 hour
       core-pool-size: 3
