@@ -47,4 +47,3 @@ up-for-grabs
 status: ideal-for-contribution
 help wanted
 help-wanted
-documentation
