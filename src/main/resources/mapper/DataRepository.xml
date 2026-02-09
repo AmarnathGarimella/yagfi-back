@@ -46,13 +46,15 @@
     </select>
 
     <select id="findAllLanguages" resultType="java.lang.String">
-        select repo.language, count(1) as cnt
+        select repo.language
         from gfi.issue_v issue
         inner join gfi.repository_v repo on issue.repository_id = repo.id
         group by repo.language
-        order by cnt desc
+        order by count(1) desc
     </select>
 
+
+    <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
     <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto">
         SELECT ei.url
         FROM gfi.issue_v ei
@@ -61,7 +63,6 @@
         ORDER BY RANDOM() LIMIT 1
     </select>
 
-    
 
    <select id="findAllLabels" resultType="com.github.regyl.gfi.controller.dto.response.statistic.LabelStatisticResponseDto">
     WITH labels_cte AS (
@@ -74,6 +75,14 @@
   </select>
 
   
+  <select id="findAllIssueLanguages" resultType="java.lang.String">
+    SELECT issue.language
+    FROM gfi.issue_v issue
+    WHERE issue.language IS NOT NULL
+    GROUP BY issue.language
+    ORDER BY COUNT(1) DESC
+  </select>
+
 
     <sql id="dataFilter">
         <where>
