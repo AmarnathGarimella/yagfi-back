@@ -4,11 +4,18 @@ spring:
     feature-enabled:
       auto-upload: false
       auto-upload-meta: false
-      feed-generation: false
+      feed-generation: true
       request-logging: true
     email:
       username: ${EMAIL_USERNAME:test}
       password: ${EMAIL_PASSWORD:test}
+    cyclonedx:
+      services:
+        - 'localhost:9090'
+        - 'localhost:9091'
+        - 'localhost:9092'
+        - 'localhost:9093'
+        - 'localhost:9094'
 
 logging:
   level:

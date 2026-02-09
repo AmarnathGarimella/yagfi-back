@@ -53,8 +53,6 @@
         order by count(1) desc
     </select>
 
-
-    <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.DataRequestDto">
     <select id="findRandomIssueLink" resultType="java.lang.String" parameterType="com.github.regyl.gfi.controller.dto.request.issue.DataRequestDto">
         SELECT ei.url
         FROM gfi.issue_v ei
