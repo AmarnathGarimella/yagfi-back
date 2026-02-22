@@ -14,5 +14,6 @@ class ControllerArchTest {
             noClasses()
                     .that().resideInAPackage("..controller..")
                     .should().dependOnClassesThat()
-                    .resideInAPackage("..repository..");
+                    .resideInAPackage("..repository..")
+                    .because("Controllers should not be dependent on repositories");
 }

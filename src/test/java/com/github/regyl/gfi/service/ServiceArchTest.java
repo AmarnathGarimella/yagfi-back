@@ -14,5 +14,6 @@ class ServiceArchTest {
             noClasses()
                     .that().resideInAPackage("..service..")
                     .should().dependOnClassesThat()
-                    .resideInAPackage("..controller..");
+                    .resideInAPackage("..controller..")
+                    .because("Services should not be dependent on controllers");
 }
