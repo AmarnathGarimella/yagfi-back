@@ -52,3 +52,5 @@ help wanted
 help-wanted
 Help Wanted
 kind/quick-win
+type: documentation (cleanup)
+IdealFirstBug
